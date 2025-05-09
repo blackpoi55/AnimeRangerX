@@ -19,40 +19,40 @@ export const statRankTable = [
 ]
 
 export const traitList = [
-    // 🔵 ฟ้า (Common)
-    { name: "Endure I", desc: "This unit has increased HP!", chance: 8, color: "blue", rarity: "rare" },
-    { name: "Horizon I", desc: "This unit has increased range!", chance: 8, color: "blue", rarity: "rare" },
-    { name: "Superior I", desc: "This unit has increased damage!", chance: 8, color: "blue", rarity: "rare" },
-    { name: "Superior II", desc: "This unit has increased damage!", chance: 7, color: "blue", rarity: "rare" },
-    { name: "Horizon II", desc: "This unit has increased range!", chance: 7, color: "blue", rarity: "rare" },
-    { name: "Endure II", desc: "This unit has increased HP!", chance: 7, color: "blue", rarity: "rare" },
-    { name: "Horizon III", desc: "This unit has increased range!", chance: 6, color: "blue", rarity: "rare" },
-    { name: "Superior III", desc: "This unit has increased damage!", chance: 6, color: "blue", rarity: "rare" },
-    { name: "Endure III", desc: "This unit has increased HP!", chance: 6, color: "blue", rarity: "rare" },
+    // 🔵 ฟ้า 
+    { name: "Endure I", desc: "This unit has increased HP!", chance: 8, color: "blue", svg: "/svg/Endure", rarity: "rare" },
+    { name: "Horizon I", desc: "This unit has increased range!", chance: 8, color: "blue", svg: "/svg/Horizon", rarity: "rare" },
+    { name: "Superior I", desc: "This unit has increased damage!", chance: 8, color: "blue", svg: "/svg/Superior", rarity: "rare" },
+    { name: "Superior II", desc: "This unit has increased damage!", chance: 7, color: "blue", svg: "/svg/Superior", rarity: "rare" },
+    { name: "Horizon II", desc: "This unit has increased range!", chance: 7, color: "blue", svg: "/svg/Horizon", rarity: "rare" },
+    { name: "Endure II", desc: "This unit has increased HP!", chance: 7, color: "blue", svg: "/svg/Endure", rarity: "rare" },
+    { name: "Horizon III", desc: "This unit has increased range!", chance: 6, color: "blue", svg: "/svg/Horizon", rarity: "rare" },
+    { name: "Superior III", desc: "This unit has increased damage!", chance: 6, color: "blue", svg: "/svg/Superior", rarity: "rare" },
+    { name: "Endure III", desc: "This unit has increased HP!", chance: 6, color: "blue", svg: "/svg/Endure", rarity: "rare" },
 
-    // 🟣 ม่วง (Rare)
-    { name: "Brute", desc: "This unit specializes in damage!", chance: 5, color: "purple", rarity: "epic" },
-    { name: "Sniper", desc: "This unit specializes in range!", chance: 5, color: "purple", rarity: "epic" },
-    { name: "Colossal", desc: "This unit specializes in HP!", chance: 5, color: "purple", rarity: "epic" },
-    { name: "Investor", desc: "This unit has reduced cost!", chance: 5, color: "purple", rarity: "epic" },
-    { name: "Jokester", desc: "A balanced unit!", chance: 5, color: "purple", rarity: "epic" },
+    // 🟣 ม่วง
+    { name: "Brute", desc: "This unit specializes in damage!", chance: 5, color: "purple", svg: "/svg/Brute", rarity: "epic" },
+    { name: "Sniper", desc: "This unit specializes in range!", chance: 5, color: "purple", svg: "/svg/Sniper", rarity: "epic" },
+    { name: "Colossal", desc: "This unit specializes in HP!", chance: 5, color: "purple", svg: "/svg/Colossal", rarity: "epic" },
+    { name: "Investor", desc: "This unit has reduced cost!", chance: 5, color: "purple", svg: "/svg/Investor", rarity: "epic" },
+    { name: "Jokester", desc: "A balanced unit!", chance: 5, color: "purple", svg: "/svg/Jokester", rarity: "epic" },
 
-    // 🟡 ทอง (Epic)
-    { name: "Blitz", desc: "Extreme range boost!", chance: 3.5, color: "yellow", rarity: "legendary" },
-    { name: "Juggernaut", desc: "Extreme HP boost!", chance: 2.5, color: "yellow", rarity: "legendary" },
-    { name: "Millionaire", desc: "Significant cost reduction!", chance: 2.5, color: "yellow", rarity: "legendary" },
-    { name: "Violent", desc: "Extreme damage boost!", chance: 2.5, color: "yellow", rarity: "legendary" },
+    // 🟡 ทอง
+    { name: "Blitz", desc: "Extreme range boost!", chance: 3.5, color: "yellow", svg: "/svg/Blitz", rarity: "legendary" },
+    { name: "Juggernaut", desc: "Extreme HP boost!", chance: 2.5, color: "yellow", svg: "/svg/Juggernaut", rarity: "legendary" },
+    { name: "Millionaire", desc: "Significant cost reduction!", chance: 2.5, color: "yellow", svg: "/svg/Millionaire", rarity: "legendary" },
+    { name: "Violent", desc: "Extreme damage boost!", chance: 2.5, color: "yellow", svg: "/svg/Violent", rarity: "legendary" },
 
-    // 🔴 แดง (Legendary)
-    { name: "Scraph", desc: "Unparalleled power!", chance: 0.5, color: "cyan", rarity: "mystic" },
-    { name: "Capitalist", desc: "Massive cost reduction and strength", chance: 0.25, color: "red", rarity: "mystic" },
-    { name: "Duplicator", desc: "This unit duplicates on spawn!", chance: 0.15, color: "red", rarity: "mystic" },
-    { name: "Sovereign", desc: "Ultimate power!", chance: 0.1, color: "red", rarity: "mystic" },
+    // 🔴 แดง
+    { name: "Scraph", desc: "Unparalleled power!", chance: 0.5, color: "cyan", svg: "/svg/Scraph", rarity: "mystic" },
+    { name: "Capitalist", desc: "Massive cost reduction and strength", chance: 0.25, color: "red", svg: "/svg/Capitalist", rarity: "mystic" },
+    { name: "Duplicator", desc: "This unit duplicates on spawn!", chance: 0.15, color: "red", svg: "/svg/Duplicator", rarity: "mystic" },
+    { name: "Sovereign", desc: "Ultimate power!", chance: 0.1, color: "red", svg: "/svg/Sovereign", rarity: "mystic" },
 ];
 export const afkdropPool = [
-    { name: "Ace", chance: 0.5 }, 
+    { name: "Ace", chance: 0.5 },
 ]
 
 export const avatar = [
-    { name: "Ace", image: "/avatar/ace.png" }, 
+    { name: "Ace", image: "/avatar/ace.png" },
 ]

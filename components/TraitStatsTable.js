@@ -18,28 +18,39 @@ export default function TraitStatsTable({ rollCount, mainTrait, subTrait }) {
           </thead>
           <tbody>
             {traitList.map((trait) => {
-              const isMain = trait.name === mainTrait?.name;
-              const isSub = trait.name === subTrait?.name;
+              const isMain = trait.name === mainTrait?.name
+              const isSub = trait.name === subTrait?.name
               const rowHighlight = isMain
                 ? "bg-gradient-to-r from-blue-800/40 to-transparent"
                 : isSub
-                ? "bg-gradient-to-r from-green-800/40 to-transparent"
-                : "";
+                  ? "bg-gradient-to-r from-green-800/40 to-transparent"
+                  : ""
 
               return (
                 <tr
                   key={trait.name}
                   className={`border-b border-white/10 ${rowHighlight}`}
                 >
-                  <td className="px-4 py-2 font-medium">{trait.name}</td>
+                  <td className="px-4 py-2 font-medium flex items-center gap-2">
+                    <img
+                      src={`${trait.svg || "/svg/default"}.svg`}
+                      alt={trait.name}
+                      className="w-5 h-5"
+                    />
+                    {trait.name}
+                  </td>
                   <td className="px-4 py-2 text-white/80">{trait.desc}</td>
                   <td className="px-4 py-2">{trait.chance}</td>
-                  <td className={`px-4 py-2 capitalize font-semibold ${
-                    trait.rarity === 'rare' ? 'text-blue-400' :
-                    trait.rarity === 'epic' ? 'text-purple-400' :
-                    trait.rarity === 'legendary' ? 'text-yellow-400' :
-                    'text-red-400'
-                  }`}>
+                  <td
+                    className={`px-4 py-2 capitalize font-semibold ${trait.rarity === "rare"
+                        ? "text-blue-400"
+                        : trait.rarity === "epic"
+                          ? "text-purple-400"
+                          : trait.rarity === "legendary"
+                            ? "text-yellow-400"
+                            : "text-red-400"
+                      }`}
+                  >
                     {trait.rarity}
                   </td>
                 </tr>

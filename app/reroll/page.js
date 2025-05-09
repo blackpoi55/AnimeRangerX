@@ -39,7 +39,7 @@ export default function RerollPage() {
 
       setRollCount((prev) => prev + 1)
       setIsRolling(false)
-    }, 500)
+    }, 10)
   }
 
   return (
@@ -66,26 +66,37 @@ export default function RerollPage() {
           {/* Trait Boxes */}
           <div className="col-span-2 space-y-4">
             {[mainTrait, subTrait].map((trait, idx) => (
-              <div key={idx} className="w-full bg-white/10 border border-white/20 rounded px-4 py-2 min-h-[40px]">
+              <div key={idx} className="w-full bg-white/10 border border-white/20 rounded px-4 py-2 min-h-[40px] flex items-center gap-3">
                 {isRolling ? (
                   <span className="animate-pulse text-purple-400">⏳ {idx === 0 ? "กำลังสุ่ม..." : ""}</span>
                 ) : trait ? (
-                  <span
-                    key={trait.name}
-                    className={`animate-trait-roll font-bold ${  trait.rarity === 'rare' ? 'text-blue-400' :
-                      trait.rarity === 'epic' ? 'text-purple-400' :
-                      trait.rarity === 'legendary' ? 'text-yellow-400' :
-                      'text-red-400'
-                      }`}
-                  >
-                    {trait.name} — <span className="text-sm text-white/70">{trait.desc}</span>
-                  </span>
+                  <>
+                    <img
+                      src={`${trait.svg || "/svg/default"}.svg`}
+                      alt={trait.name}
+                      className="w-6 h-6"
+                    />
+                    <span
+                      key={trait.name}
+                      className={`animate-trait-roll font-bold ${trait.rarity === "epic"
+                          ? "text-purple-400"
+                          : trait.rarity === "legendary"
+                            ? "text-yellow-400"
+                            : trait.rarity === "mystic"
+                              ? "text-red-400"
+                              : "text-blue-400"
+                        }`}
+                    >
+                      {trait.name} — <span className="text-sm text-white/70">{trait.desc}</span>
+                    </span>
+                  </>
                 ) : (
                   <span className="text-gray-400">🔒 Locked</span>
                 )}
               </div>
             ))}
           </div>
+
         </div>
 
         {/* Action Buttons */}
