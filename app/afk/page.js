@@ -21,7 +21,7 @@ function decryptAFK(ciphertext) {
 }
 
 export default function AFK() {
-  const payoutInterval = 5
+  const payoutInterval = 600
   const counter = useRef(0)
 
   const [time, setTime] = useState(0)
