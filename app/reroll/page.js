@@ -148,9 +148,10 @@ export default function RerollPage() {
                   <button
                     key={trait.name}
                     onClick={() => setTargetTrait(trait.name)}
-                    className={`px-3 py-1 rounded text-sm font-bold border border-white/10 ${targetTrait === trait.name ? "bg-yellow-500 text-black" : "bg-white text-black"}`}
+                    className={`px-3 py-1 rounded text-sm font-bold border border-white/10 flex items-center gap-2 ${targetTrait === trait.name ? "bg-yellow-500 text-black" : "bg-white text-black"}`}
                     disabled={isAutoRolling}
                   >
+                    <img src={`${trait.svg || "/svg/default"}.svg`} alt={trait.name} className="w-4 h-4" />
                     {trait.name}
                   </button>
                 ))}
