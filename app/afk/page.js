@@ -8,29 +8,30 @@ export default function AFK() {
   const counter = useRef(0)
 
   const [time, setTime] = useState(0)
-  const [afkData, setAfkData] = useState(() => {
+  const [afkData, setAfkData] = useState({ currency: 0, vip: false, premium: false, history: [] })
+  const [showHistory, setShowHistory] = useState(false)
+  const [filterName, setFilterName] = useState("All")
+  const [hasMounted, setHasMounted] = useState(false)
+
+  useEffect(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("afk_data")
       if (saved) {
-        return decryptAFK(saved)
+        setAfkData(decryptAFK(saved))
       }
+      setHasMounted(true)
     }
-    return { currency: 0, vip: false, premium: false, history: [] }
-  })
-
-  const [showHistory, setShowHistory] = useState(false)
-  const [filterName, setFilterName] = useState("All")
-  const [showCodePrompt, setShowCodePrompt] = useState(false)
+  }, [])
 
   const gainPerPayout = afkData.vip ? 75 : afkData.premium ? 50 : 25
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("afk_data", encryptAFK(afkData))
-    }
-  }, [afkData])
+    if (!hasMounted) return
+    localStorage.setItem("afk_data", encryptAFK(afkData))
+  }, [afkData, hasMounted])
 
   useEffect(() => {
+    if (!hasMounted) return
     const interval = setInterval(() => {
       counter.current += 1
       setTime(counter.current)
@@ -50,7 +51,7 @@ export default function AFK() {
     }, 1000)
 
     return () => clearInterval(interval)
-  }, [afkData])
+  }, [afkData, hasMounted])
 
   const formatNumber = (num) => num.toLocaleString("en-US")
   const nextPayout = payoutInterval - (time % payoutInterval)
@@ -86,7 +87,7 @@ export default function AFK() {
     <div className="min-h-screen bg-black flex flex-col items-center justify-center text-center px-4 text-white">
       <h1 className="text-5xl font-extrabold text-yellow-400 drop-shadow mb-4">AFK CHAMBER</h1>
 
-      {/* แสดงรายการตัวที่สามารถดรอปได้ */}
+      {/* Drops */}
       <div className="bg-white/10 border border-white/20 rounded-lg px-6 py-3 mb-6 max-w-md w-full">
         <h2 className="text-lg font-semibold mb-1 text-green-300">🎯 Potential Drops</h2>
         <ul className="text-sm text-white space-y-2">
@@ -106,6 +107,7 @@ export default function AFK() {
         </ul>
       </div>
 
+      {/* Summary */}
       <div className="bg-white/10 border border-white/20 rounded-lg px-6 py-3 mb-4 max-w-md w-full">
         <h2 className="text-lg font-semibold mb-1 text-purple-300">🎁 Drops Summary</h2>
         {Object.keys(dropCounts).length === 0 ? (
@@ -125,24 +127,26 @@ export default function AFK() {
         )}
       </div>
 
-      <p className="text-lg mb-2">
-        <span className="text-gray-300">Next Payout: </span>
-        <span className="text-green-400 font-bold">{nextPayout}s</span>
-      </p>
-      <p className="text-white italic mb-4">
-        Secret drop chances are unique per unit.
-      </p>
+      {/* Stats */}
+      {hasMounted && (
+        <>
+          <p className="text-lg mb-2">
+            <span className="text-gray-300">Next Payout: </span>
+            <span className="text-green-400 font-bold">{nextPayout}s</span>
+          </p>
 
-      <div className="bg-black border-2 border-purple-600 rounded-2xl py-6 px-10 max-w-sm w-full shadow-xl mb-4">
-        <p className="text-green-400 text-lg font-semibold mb-2">Currency Gained: {gainPerPayout}x</p>
-        <p className="text-white text-base mb-1">Total Gems:</p>
-        <p className="text-4xl font-bold text-purple-400">
-          {formatNumber(afkData.currency)}x <span className="text-cyan-300">💎</span>
-        </p>
-        <p className="text-sm text-white/70 mt-1">
-          You will get: <span className="text-green-400 font-semibold">{gainPerPayout}x</span>
-        </p>
-      </div>
+          <div className="bg-black border-2 border-purple-600 rounded-2xl py-6 px-10 max-w-sm w-full shadow-xl mb-4">
+            <p className="text-green-400 text-lg font-semibold mb-2">Currency Gained: {gainPerPayout}x</p>
+            <p className="text-white text-base mb-1">Total Gems:</p>
+            <p className="text-4xl font-bold text-purple-400">
+              {formatNumber(afkData.currency)}x <span className="text-cyan-300">💎</span>
+            </p>
+            <p className="text-sm text-white/70 mt-1">
+              You will get: <span className="text-green-400 font-semibold">{gainPerPayout}x</span>
+            </p>
+          </div>
+        </>
+      )}
 
       <p className="text-purple-400 font-bold">VIP Players get 75x currencies!</p>
       <p className="text-yellow-300 font-bold mb-4">Premium Players get 50x currencies!</p>
