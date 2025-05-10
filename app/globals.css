@@ -20,19 +20,70 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  background: #000;
+  background-color: #0a000a; /* fallback */
+  color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
 }
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-attachment: fixed;
+  background: url("/images/anime.png") center/cover no-repeat;
+  opacity: 0.2;
+  z-index: -3;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(-45deg, #1a0000, #2c0000, #4b0000, #1a0000);
+  background-size: 400% 400%;
+  animation: gradientFlow 20s ease infinite;
+  opacity: 0.3;
+  z-index: -2;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+
 @keyframes rank-spin {
   0% {
     transform: translateY(100%) scale(0.8);
     opacity: 0;
   }
+
   50% {
     transform: translateY(-10%) scale(1.05);
     opacity: 1;
   }
+
   100% {
     transform: translateY(0%) scale(1);
     opacity: 1;
@@ -42,15 +93,18 @@ body {
 .animate-rank-spin {
   animation: rank-spin 0.6s ease-out;
 }
+
 @keyframes stat-spin {
   0% {
     transform: translateY(100%) scale(0.8);
     opacity: 0;
   }
+
   50% {
     transform: translateY(-10%) scale(1.1);
     opacity: 1;
   }
+
   100% {
     transform: translateY(0%) scale(1);
     opacity: 1;
@@ -60,15 +114,18 @@ body {
 .animate-stat-spin {
   animation: stat-spin 0.6s ease-out;
 }
+
 @keyframes trait-roll {
   0% {
     transform: translateY(100%) scale(0.8);
     opacity: 0;
   }
+
   50% {
     transform: translateY(-10%) scale(1.1);
     opacity: 1;
   }
+
   100% {
     transform: translateY(0%) scale(1);
     opacity: 1;

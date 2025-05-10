@@ -84,7 +84,7 @@ export default function AFK() {
   }
 
   return (
-    <div className="min-h-screen bg-black flex flex-col items-center justify-center text-center px-4 text-white">
+    <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 text-white">
       <h1 className="text-5xl font-extrabold text-yellow-400 drop-shadow mb-4">AFK CHAMBER</h1>
 
       {/* Drops */}

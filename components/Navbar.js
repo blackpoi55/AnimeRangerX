@@ -40,21 +40,21 @@ export default function Navbar() {
     }
   }, [])
 
-  useEffect(() => {
-    const detectDevTools = () => {
-      const threshold = 160
-      const check = setInterval(() => {
-        const widthThreshold = window.outerWidth - window.innerWidth > threshold
-        const heightThreshold = window.outerHeight - window.innerHeight > threshold
-        if (widthThreshold || heightThreshold) {
-          clearInterval(check)
-          location.reload()
-        }
-      }, 1000)
-      return () => clearInterval(check)
-    }
-    detectDevTools()
-  }, [])
+  // useEffect(() => {
+  //   const detectDevTools = () => {
+  //     const threshold = 160
+  //     const check = setInterval(() => {
+  //       const widthThreshold = window.outerWidth - window.innerWidth > threshold
+  //       const heightThreshold = window.outerHeight - window.innerHeight > threshold
+  //       if (widthThreshold || heightThreshold) {
+  //         clearInterval(check)
+  //         location.reload()
+  //       }
+  //     }, 1000)
+  //     return () => clearInterval(check)
+  //   }
+  //   detectDevTools()
+  // }, [])
 
   return (
     <nav className="bg-gray-900 p-4 flex gap-4 shadow-lg">
