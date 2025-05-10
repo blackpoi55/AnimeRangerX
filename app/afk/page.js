@@ -1,24 +1,7 @@
 "use client"
 import { useEffect, useRef, useState } from "react"
-import CryptoJS from "crypto-js"
 import { afkdropPool, avatar } from "@/components/JSON"
-
-const secretKey = "afk_super_secret"
-
-function encryptAFK(data) {
-  const json = JSON.stringify(data)
-  return CryptoJS.AES.encrypt(json, secretKey).toString()
-}
-
-function decryptAFK(ciphertext) {
-  try {
-    const bytes = CryptoJS.AES.decrypt(ciphertext, secretKey)
-    const decrypted = bytes.toString(CryptoJS.enc.Utf8)
-    return JSON.parse(decrypted)
-  } catch {
-    return { currency: 0, vip: false, premium: false, history: [] }
-  }
-}
+import { encryptAFK, decryptAFK } from "@/utils/encryptAFK"
 
 export default function AFK() {
   const payoutInterval = 600

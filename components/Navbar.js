@@ -1,7 +1,8 @@
 "use client"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { decryptAFK } from "@/utils/encryptAFK"
 
 const navItems = [
   { name: "AFK", path: "/afk" },
@@ -11,6 +12,33 @@ const navItems = [
 
 export default function Navbar() {
   const pathname = usePathname()
+  const [status, setStatus] = useState("Loading...")
+  const [statusColor, setStatusColor] = useState("text-gray-300")
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("afk_data")
+      if (saved) {
+        const decoded = decryptAFK(saved)
+        if (decoded.vip) {
+          setStatus("VIP")
+          setStatusColor("text-yellow-400")
+        } else if (decoded.premium) {
+          setStatus("Premium")
+          setStatusColor("text-purple-400")
+        } else {
+          setStatus("General")
+          setStatusColor("text-gray-400")
+        }
+      } else {
+        setStatus("General")
+        setStatusColor("text-gray-400")
+      }
+    } catch {
+      setStatus("General")
+      setStatusColor("text-gray-400")
+    }
+  }, [])
 
   useEffect(() => {
     const detectDevTools = () => {
@@ -25,7 +53,6 @@ export default function Navbar() {
       }, 1000)
       return () => clearInterval(check)
     }
-
     detectDevTools()
   }, [])
 
@@ -47,7 +74,8 @@ export default function Navbar() {
       <div className="text-2xl font-bold text-white w-1/6 flex justify-center">
         <img className="h-12" src="/images/ARX_.png" alt="" />
       </div>
-      <div className="font-bold text-white w-4/6 flex items-center justify-end">
+      <div className="font-bold text-white w-4/6 flex items-center justify-end gap-4">
+        <span className={`text-sm font-semibold ${statusColor}`}>Status: {status}</span>
         <label className="text-pink-500">Cr: BoatMousay</label>
       </div>
     </nav>
